@@ -1,15 +1,39 @@
-echo [$(date)]: "START"
+#!/bin/bash
 
-echo [$(date)]: "Creating env with python 3.9 ..."
+# Gemstack MLOps Environment Setup
+# Author: Aditya Swaroop
 
-conda create --prefix ./env python=3.9 -y
+log() {
+    echo "[$(date)]: $1"
+}
 
-echo [$(date)]: "Activating the conda..."
+if [ -z "$1" ]; then
+    log "Error: No environment name provided."
+    log "Usage: ./init_setup.sh <env_name>"
+    exit 1
+fi
 
-source activate ./env
+ENV_NAME="$1"
+ENV_PATH="./envs/$ENV_NAME"
 
-echo [$(date)]: "Installing the dev requirements..."
+log "Setting up Gemstack MLOps environment: $ENV_NAME"
 
-pip install -r requirements.txt
+if [ -d "$ENV_PATH" ]; then
+    log "Environment '$ENV_NAME' already exists. Activating..."
+else
+    log "Creating environment '$ENV_NAME' with Python 3.10..."
+    conda create --prefix "$ENV_PATH" python=3.10 -y
+fi
 
-echo [$(date)]: "END"
+log "Activating conda environment..."
+source activate "$ENV_PATH"
+
+if [ -f requirements.txt ]; then
+    log "Installing project dependencies..."
+    pip install -r requirements.txt
+else
+    log "Warning: requirements.txt not found."
+fi
+
+log "Gemstack MLOps environment setup complete!"
+log "Run: PYTHONPATH=. python -m gemstack_mlops.pipeline.training_pipeline"

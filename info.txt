@@ -1,5 +1,14 @@
-Requirements:
-    1. Basics of ML/DL
-    2. Basics of Python
-    3. Git
-    4. Docker
+Gemstack MLOps
+
+Production-ready template featuring MLflow, DVC, Airflow, and Flask.
+
+Features:
+- Config-driven data ingestion (seaborn/custom URL)
+- Schema validation
+- Hyperparameter tuning
+- MLflow experiment tracking
+- Docker containerization
+- CI/CD with GitHub Actions
+- Airflow orchestration DAGs
+
+Author: Aditya Swaroop
