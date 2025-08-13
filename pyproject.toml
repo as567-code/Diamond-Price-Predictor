@@ -24,4 +24,4 @@ Homepage = "https://github.com/adityaswaroop/gemstack-mlops"
 Repository = "https://github.com/adityaswaroop/gemstack-mlops"
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]
