@@ -20,6 +20,6 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     long_description=long_description,
     url="https://github.com/adityaswaroop/gemstack-mlops",
-    package_dir={"": "src"},
-    packages=setuptools.find_packages(where="src"),
+    package_dir={"": "."},
+    packages=["gemstack_mlops"],
 )
