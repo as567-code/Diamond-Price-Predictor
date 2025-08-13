@@ -8,9 +8,9 @@ import numpy as np
 from mlflow.models.signature import infer_signature
 from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
 
-from src.logger import logging
-from src.exception import CustomException
-from src.utils.utils import load_object
+from gemstack_mlops.logger import logging
+from gemstack_mlops.exception import CustomException
+from gemstack_mlops.utils.utils import load_object
 
 class ModelEvaluation:
     def __init__(self):

@@ -1,13 +1,13 @@
 import os
 import sys
 
-from src.logger import logging
-from src.exception import CustomException
-from src.components.data_ingestion_component import DataIngestion
-from src.components.data_transformation_component import DataTransformation
-from src.components.model_trainer_component import ModelTrainer
-from src.components.model_evaluation_component import ModelEvaluation
-from src.components.data_validation_component import (
+from gemstack_mlops.logger import logging
+from gemstack_mlops.exception import CustomException
+from gemstack_mlops.components.data_ingestion_component import DataIngestion
+from gemstack_mlops.components.data_transformation_component import DataTransformation
+from gemstack_mlops.components.model_trainer_component import ModelTrainer
+from gemstack_mlops.components.model_evaluation_component import ModelEvaluation
+from gemstack_mlops.components.data_validation_component import (
     DataValidation,
     DataValidationConfig,
 )

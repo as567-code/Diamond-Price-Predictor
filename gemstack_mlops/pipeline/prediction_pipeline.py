@@ -2,9 +2,9 @@ import os
 import sys
 import pandas as pd
 
-from src.exception import CustomException
-from src.logger import logging
-from src.utils.utils import load_object
+from gemstack_mlops.exception import CustomException
+from gemstack_mlops.logger import logging
+from gemstack_mlops.utils.utils import load_object
 
 
 class PredictPipeline:

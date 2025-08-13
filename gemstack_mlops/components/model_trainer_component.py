@@ -9,9 +9,9 @@ from sklearn.linear_model import ElasticNet, Lasso, LinearRegression, Ridge
 from sklearn.model_selection import RandomizedSearchCV
 from scipy.stats import loguniform
 
-from src.logger import logging
-from src.exception import CustomException
-from src.utils.utils import evaluate_model, save_object
+from gemstack_mlops.logger import logging
+from gemstack_mlops.exception import CustomException
+from gemstack_mlops.utils.utils import evaluate_model, save_object
 
 
 @dataclass 

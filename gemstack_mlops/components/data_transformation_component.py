@@ -10,9 +10,9 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OrdinalEncoder, StandardScaler
 
-from src.logger import logging
-from src.exception import CustomException
-from src.utils.utils import save_object
+from gemstack_mlops.logger import logging
+from gemstack_mlops.exception import CustomException
+from gemstack_mlops.utils.utils import save_object
 
 
 

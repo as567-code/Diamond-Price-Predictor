@@ -6,8 +6,8 @@ from pathlib import Path
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from src.logger import logging
-from src.exception import CustomException
+from gemstack_mlops.logger import logging
+from gemstack_mlops.exception import CustomException
 
 # Optional dependencies used dynamically if available
 try:

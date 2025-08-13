@@ -5,8 +5,8 @@ from typing import List, Tuple
 
 import pandas as pd
 
-from src.logger import logging
-from src.exception import CustomException
+from gemstack_mlops.logger import logging
+from gemstack_mlops.exception import CustomException
 
 
 @dataclass
