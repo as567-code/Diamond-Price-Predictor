@@ -22,7 +22,7 @@ with DAG(
     output_path = os.path.abspath("artifacts/predictions.csv")
     cmd = (
         "PYTHONPATH=src python - << 'PY'\n"
-        "from src.pipeline.prediction_pipeline import PredictPipeline\n"
+        "from gemstack_mlops.pipeline.prediction_pipeline import PredictPipeline\n"
         "import pandas as pd\n"
         f"df = pd.read_csv(r'{input_path}')\n"
         "X = df.drop(columns=['price', 'id'], errors='ignore')\n"

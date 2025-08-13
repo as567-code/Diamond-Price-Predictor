@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.pipeline.prediction_pipeline import PredictPipeline
+from gemstack_mlops.pipeline.prediction_pipeline import PredictPipeline
 
 
 def test_predict_smoke():

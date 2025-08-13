@@ -3,7 +3,7 @@ import os
 import sys
 from flask import Flask, request, render_template
 
-from src.pipeline.prediction_pipeline import PredictPipeline, CustomData
+from gemstack_mlops.pipeline.prediction_pipeline import PredictPipeline, CustomData
 
 app = Flask(__name__)
 
