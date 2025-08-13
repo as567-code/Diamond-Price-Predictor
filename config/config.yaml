@@ -1,0 +1,7 @@
+data_ingestion:
+  # Choose one: provide a direct CSV url OR use seaborn dataset
+  # url: "https://your-source/path/to/dataset.csv"
+  source: seaborn
+  dataset: diamonds
+  test_size: 0.25
+  random_state: 42

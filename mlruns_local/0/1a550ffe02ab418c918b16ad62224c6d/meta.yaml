@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/adityaswaroop/Downloads/MLOps-End-To-End-Project-master/mlruns_local/0/1a550ffe02ab418c918b16ad62224c6d/artifacts
+end_time: 1755059017375
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1a550ffe02ab418c918b16ad62224c6d
+run_name: puzzled-gull-808
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1755059014247
+status: 3
+tags: []
+user_id: adityaswaroop
