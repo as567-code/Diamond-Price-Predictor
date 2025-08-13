@@ -5,3 +5,12 @@ env
 logs
 mlopsproject.egg-info
 __pycache__
+# Build outputs
+artifacts/
+mlruns/
+mlruns_local/
+logs/
+__pycache__/
+.env
+.venv/
+.ipynb_checkpoints/
