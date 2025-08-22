@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Price Comparison</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4e4376, #2b5876);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .diamond-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+
+        .diamond-card.highlight {
+            border-color: #28a745;
+            background: #f8fff8;
+        }
+
+        .diamond-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            margin: 15px 0;
+        }
+
+        .specs {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .comparison-center {
+            text-align: center;
+        }
+
+        .vs-text {
+            font-size: 2em;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .price-difference {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .price-difference.positive {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .price-difference.negative {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .difference-amount {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .percentage {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .analysis {
+            background: #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .analysis h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .analysis ul {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .analysis li {
+            margin-bottom: 8px;
+        }
+
+        .buttons {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 0 10px 10px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn.secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+
+        @media (max-width: 768px) {
+            .comparison-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .comparison-center {
+                order: -1;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .price {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💎 Diamond Price Comparison</h1>
+        <p class="subtitle">Analysis of how different diamond characteristics affect pricing</p>
+
+        <div class="comparison-container">
+            <div class="diamond-card">
+                <div class="diamond-icon">💎</div>
+                <h3>Base Diamond</h3>
+                <div class="price">${{ base_price }}</div>
+                <div class="specs">
+                    <strong>{{ base_data.carat }} carat</strong><br>
+                    {{ base_data.cut }} cut<br>
+                    Color: {{ base_data.color }}<br>
+                    Clarity: {{ base_data.clarity }}<br>
+                    Depth: {{ base_data.depth }}%<br>
+                    Table: {{ base_data.table }}%
+                </div>
+            </div>
+
+            <div class="comparison-center">
+                <div class="vs-text">VS</div>
+                <div class="price-difference {{ 'positive' if price_diff > 0 else 'negative' if price_diff < 0 else '' }}">
+                    <div class="difference-amount">
+                        {{ '+' if price_diff > 0 else '' }}${{ price_diff }}
+                    </div>
+                    <div class="percentage">
+                        {{ '+' if percent_diff > 0 else '' }}{{ percent_diff }}%
+                    </div>
+                </div>
+            </div>
+
+            <div class="diamond-card highlight">
+                <div class="diamond-icon">💎</div>
+                <h3>Comparison Diamond</h3>
+                <div class="price">${{ compare_price }}</div>
+                <div class="specs">
+                    <strong>{{ compare_data.carat }} carat</strong><br>
+                    {{ compare_data.cut }} cut<br>
+                    Color: {{ compare_data.color }}<br>
+                    Clarity: {{ compare_data.clarity }}<br>
+                    Depth: {{ compare_data.depth }}%<br>
+                    Table: {{ compare_data.table }}%
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis">
+            <h3>💡 Price Analysis</h3>
+            <ul>
+                <li><strong>Carat Difference:</strong> {{ "%.1f"|format(compare_data.carat - base_data.carat) }} carat increase</li>
+                {% if compare_data.cut != base_data.cut %}
+                <li><strong>Cut Quality:</strong> {{ base_data.cut }} → {{ compare_data.cut }} ({{ 'upgrade' if compare_data.cut == 'Ideal' else 'change' }})</li>
+                {% endif %}
+                {% if compare_data.color != base_data.color %}
+                <li><strong>Color Grade:</strong> {{ base_data.color }} → {{ compare_data.color }} ({{ 'improvement' if compare_data.color < base_data.color else 'downgrade' }})</li>
+                {% endif %}
+                {% if compare_data.clarity != base_data.clarity %}
+                <li><strong>Clarity:</strong> {{ base_data.clarity }} → {{ compare_data.clarity }} ({{ 'improvement' if compare_data.clarity in ['VVS1', 'VVS2', 'VS1', 'VS2'] and base_data.clarity in ['SI1', 'SI2', 'I1'] else 'change' }})</li>
+                {% endif %}
+                <li><strong>Price Impact:</strong> The comparison diamond is {{ 'more expensive' if price_diff > 0 else 'less expensive' if price_diff < 0 else 'equally priced' }}</li>
+                <li><strong>Value per Carat:</strong> ${{ "%.0f"|format(compare_price / compare_data.carat) }} vs ${{ "%.0f"|format(base_price / base_data.carat) }}</li>
+            </ul>
+        </div>
+
+        <div class="buttons">
+            <a href="/compare" class="btn">Compare Different Diamonds</a>
+            <a href="/predict" class="btn secondary">Single Diamond Prediction</a>
+            <a href="/" class="btn secondary">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

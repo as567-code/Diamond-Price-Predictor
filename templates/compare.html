@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Diamond Prices</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4e4376, #2b5876);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+
+        .diamond-forms {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .diamond-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #667eea;
+        }
+
+        .diamond-card h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            background: #fee;
+            color: #c33;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #c33;
+        }
+
+        @media (max-width: 768px) {
+            .diamond-forms {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💎 Compare Diamond Prices</h1>
+        <p class="subtitle">Compare prices between two different diamond configurations to understand how characteristics affect value</p>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form action="{{ url_for('compare_diamonds') }}" method="post">
+            <div class="diamond-forms">
+                <div class="diamond-card">
+                    <h3>Base Diamond</h3>
+
+                    <div class="form-group">
+                        <label for="base_carat">Carat:</label>
+                        <input type="text" id="base_carat" name="base_carat" placeholder="e.g., 1.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="base_depth">Depth (%):</label>
+                        <input type="text" id="base_depth" name="base_depth" placeholder="e.g., 60.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="base_table">Table (%):</label>
+                        <input type="text" id="base_table" name="base_table" placeholder="e.g., 55.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="base_x">Length (x):</label>
+                        <input type="text" id="base_x" name="base_x" placeholder="e.g., 6.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="base_y">Width (y):</label>
+                        <input type="text" id="base_y" name="base_y" placeholder="e.g., 6.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="base_z">Depth (z):</label>
+                        <input type="text" id="base_z" name="base_z" placeholder="e.g., 4.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="base_cut">Cut:</label>
+                        <select id="base_cut" name="base_cut" required>
+                            <option value="Fair">Fair</option>
+                            <option value="Good">Good</option>
+                            <option value="Very Good">Very Good</option>
+                            <option value="Premium">Premium</option>
+                            <option value="Ideal">Ideal</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="base_color">Color:</label>
+                        <select id="base_color" name="base_color" required>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="H">H</option>
+                            <option value="I">I</option>
+                            <option value="J">J</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="base_clarity">Clarity:</label>
+                        <select id="base_clarity" name="base_clarity" required>
+                            <option value="I1">I1</option>
+                            <option value="SI2">SI2</option>
+                            <option value="SI1">SI1</option>
+                            <option value="VS2">VS2</option>
+                            <option value="VS1">VS1</option>
+                            <option value="VVS2">VVS2</option>
+                            <option value="VVS1">VVS1</option>
+                            <option value="IF">IF</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="diamond-card">
+                    <h3>Comparison Diamond</h3>
+
+                    <div class="form-group">
+                        <label for="compare_carat">Carat:</label>
+                        <input type="text" id="compare_carat" name="compare_carat" placeholder="e.g., 1.5" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="compare_depth">Depth (%):</label>
+                        <input type="text" id="compare_depth" name="compare_depth" placeholder="e.g., 62.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="compare_table">Table (%):</label>
+                        <input type="text" id="compare_table" name="compare_table" placeholder="e.g., 58.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="compare_x">Length (x):</label>
+                        <input type="text" id="compare_x" name="compare_x" placeholder="e.g., 7.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="compare_y">Width (y):</label>
+                        <input type="text" id="compare_y" name="compare_y" placeholder="e.g., 7.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="compare_z">Depth (z):</label>
+                        <input type="text" id="compare_z" name="compare_z" placeholder="e.g., 4.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="compare_cut">Cut:</label>
+                        <select id="compare_cut" name="compare_cut" required>
+                            <option value="Fair">Fair</option>
+                            <option value="Good">Good</option>
+                            <option value="Very Good">Very Good</option>
+                            <option value="Premium">Premium</option>
+                            <option value="Ideal">Ideal</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="compare_color">Color:</label>
+                        <select id="compare_color" name="compare_color" required>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="H">H</option>
+                            <option value="I">I</option>
+                            <option value="J">J</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="compare_clarity">Clarity:</label>
+                        <select id="compare_clarity" name="compare_clarity" required>
+                            <option value="I1">I1</option>
+                            <option value="SI2">SI2</option>
+                            <option value="SI1">SI1</option>
+                            <option value="VS2">VS2</option>
+                            <option value="VS1">VS1</option>
+                            <option value="VVS2">VVS2</option>
+                            <option value="VVS1">VVS1</option>
+                            <option value="IF">IF</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Compare Diamonds</button>
+        </form>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -3,25 +3,29 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "gemstack-mlops"
-version = "0.1.0"
-description = "Gemstack: opinionated MLOps template with MLflow, DVC, Airflow, and Flask"
+name = "diamond-price-predictor"
+version = "1.0.0"
+description = "Diamond Price Prediction MLOps - Production-ready ML pipeline for predicting diamond prices using advanced ML techniques"
 readme = "README.md"
 authors = [
-    { name = "Aditya Swaroop" }
+    { name = "Diamond Price Predictor Team" }
 ]
 license = { text = "MIT" }
 requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent"
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules"
 ]
-keywords = ["MLOps", "MLflow", "DVC", "Airflow", "Flask"]
+keywords = ["diamond", "price-prediction", "machine-learning", "MLOps", "MLflow", "xgboost", "flask"]
 
 [project.urls]
-Homepage = "https://github.com/adityaswaroop/gemstack-mlops"
-Repository = "https://github.com/adityaswaroop/gemstack-mlops"
+Homepage = "https://github.com/yourusername/diamond-price-predictor"
+Repository = "https://github.com/yourusername/diamond-price-predictor"
+Documentation = "https://diamond-price-predictor.readthedocs.io/"
+Issues = "https://github.com/yourusername/diamond-price-predictor/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]

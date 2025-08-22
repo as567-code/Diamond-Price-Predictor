@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Gemstack MLOps Environment Setup
-# Author: Aditya Swaroop
+# Diamond Price Predictor MLOps Environment Setup
+# Author: Diamond Price Predictor Team
 
 log() {
     echo "[$(date)]: $1"
@@ -35,5 +35,5 @@ else
     log "Warning: requirements.txt not found."
 fi
 
-log "Gemstack MLOps environment setup complete!"
+log "Diamond Price Predictor environment setup complete!"
 log "Run: PYTHONPATH=. python -m gemstack_mlops.pipeline.training_pipeline"

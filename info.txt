@@ -1,14 +1,15 @@
-Gemstack MLOps
+Diamond Price Predictor MLOps
 
-Production-ready template featuring MLflow, DVC, Airflow, and Flask.
+Production-ready ML pipeline for diamond price prediction with comprehensive MLOps capabilities.
 
 Features:
-- Config-driven data ingestion (seaborn/custom URL)
-- Schema validation
-- Hyperparameter tuning
-- MLflow experiment tracking
-- Docker containerization
-- CI/CD with GitHub Actions
-- Airflow orchestration DAGs
+- Advanced diamond price prediction using XGBoost and ensemble methods
+- Real-time web interface for instant price estimates
+- Complete MLOps stack with MLflow, DVC, and Airflow
+- Automated training pipelines and batch predictions
+- Production-ready Flask API with comprehensive error handling
+- Docker containerization for consistent deployment
 
-Author: Aditya Swaroop
+Project: Diamond Price Prediction
+Version: 1.0.0
+Author: Diamond Price Predictor Team
